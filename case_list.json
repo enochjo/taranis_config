@@ -1,0 +1,39 @@
+{
+	"test_run":{
+		"input_data_dir": "$TARANIS_DATA_HOME/",
+		"input_data_selection": "*201812*",
+        "output_data_dir": "$TARANIS_OUTPUT_DIR/",
+        "image_output_dir": "$TARANIS_OUTPUT_DIR/images/",
+        "sonde_directory": "$TARANIS_OUTPUT_DIR/corinterpolatedsondeM1.c1/",
+		"processing_config": "$TARANIS_CONFIG_HOME/corcsapr2_mask_kdp_attencorr.json",
+		"quicklook_config":"$TARANIS_CONFIG_HOME/corcsapr2_quicklooks.json",
+        "cal_file_zh": "$TARANIS_CONFIG_HOME/cacti_csapr2_zh_conf.csv",
+        "cal_file_zdr": "$TARANIS_CONFIG_HOME/cacti_csapr2_zdr_conf.csv",
+        "cal_method": "csv",
+        "task_array": false,
+        "modes": ["corcsapr2cfrppiqcM1.b1"],
+        "drop_list": ["attenuation_corrected_differential_reflectivity","attenuation_corrected_differential_reflectivity_lag_1","attenuation_corrected_reflectivity_h",
+        "reflectivity_v","specific_differential_phase","uncorrected_copol_correlation_coeff","uncorrected_differential_phase","uncorrected_differential_reflectivity",
+        "uncorrected_differential_reflectivity_lag_1","uncorrected_mean_doppler_velocity_h","uncorrected_mean_doppler_velocity_v","uncorrected_reflectivity_h",
+        "uncorrected_reflectivity_v","uncorrected_spectral_width_h","uncorrected_spectral_width_v"]
+    },
+    "grid_run":{
+		"input_data_dir": "$TARANIS_DATA_HOME/",
+		"input_data_selection": "*201812*",
+        "output_data_dir": "$TARANIS_OUTPUT_DIR/",
+        "image_output_dir": "$TARANIS_OUTPUT_DIR/images/",
+        "sonde_directory": "$TARANIS_OUTPUT_DIR/corinterpolatedsondeM1.c1/",
+		"processing_config": "$TARANIS_CONFIG_HOME/corcsapr2_mask_kdp_attencorr.json",
+		"quicklook_config":"$TARANIS_CONFIG_HOME/corcsapr2_quicklooks.json",
+        "cal_file_zh": "$TARANIS_CONFIG_HOME/cacti_csapr2_zh_conf.csv",
+        "cal_file_zdr": "$TARANIS_CONFIG_HOME/cacti_csapr2_zdr_conf.csv",
+        "cal_method": "csv",
+        "task_array": false,
+        "modes": ["taranis_corcsapr2cfrppiqcM1.c1"],
+        "drop_list": ["attenuation_corrected_differential_reflectivity","attenuation_corrected_differential_reflectivity_lag_1","attenuation_corrected_reflectivity_h",
+        "reflectivity_v","specific_differential_phase","uncorrected_copol_correlation_coeff","uncorrected_differential_phase","uncorrected_differential_reflectivity",
+        "uncorrected_differential_reflectivity_lag_1","uncorrected_mean_doppler_velocity_h","uncorrected_mean_doppler_velocity_v","uncorrected_reflectivity_h",
+        "uncorrected_reflectivity_v","uncorrected_spectral_width_h","uncorrected_spectral_width_v"]
+    }
+}
+
