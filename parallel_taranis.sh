@@ -2,11 +2,11 @@
 #SBATCH -N 1
 #SBATCH -C cpu
 #SBATCH -q regular
-#SBATCH -J taranis_polar_201901
+#SBATCH -J taranis_polar_all
 #SBATCH --mail-user=enoch.jo@pnnl.gov
 #SBATCH --mail-type=ALL
 #SBATCH -A m1657
-#SBATCH -t 04:00:00
+#SBATCH -t 24:00:00
 
 # OpenMP settings:
 export OMP_NUM_THREADS=1
@@ -16,17 +16,17 @@ export PODMANHPC_MOUNT_PROGRAM=/global/common/shared/das/podman/bin/fuse-overlay
 
 
 PATH=/global/common/shared/tig/podman-hpc/bin/:$PATH
-podman-hpc rmsqi enochjo2009/taranis:v3.0
+podman-hpc rmsqi enochjo2009/taranis:v3.0.4
 
 source /global/homes/e/enochjo/.config/containers/login.sh
 podman-hpc login docker.io -u $PODMAN_USERNAME -p $PODMAN_PASSWORD
-podman-hpc pull enochjo2009/taranis:v3.0
-podman-hpc migrate enochjo2009/taranis:v3.0
+podman-hpc pull enochjo2009/taranis:v3.0.4
+podman-hpc migrate enochjo2009/taranis:v3.0.4
 
 # Set paths
 PYTHON_SCRIPT="./process_cacti_csapr2_case.py" # Not used for now.
 # Note that CASE_CONFIG_FILE is also mounted in podman-hpc
-CASE_CONFIG_FILE="/pscratch/sd/e/enochjo/taranis/joblist/cartesian_201901.json"
+CASE_CONFIG_FILE="/pscratch/sd/e/enochjo/taranis/joblist/missing_files_polar.json"
 
 # Extract case names from JSON
 CASE_NAMES=($(jq -r 'keys[]' "$CASE_CONFIG_FILE"))  # Modify based on JSON structure if needed
@@ -74,8 +74,8 @@ run_job() {
         wait "${JOB_PIDS[$case_name]}" 2>/dev/null
     fi
     srun -n 1 -c 10 --cpu_bind=cores podman-hpc run --rm --entrypoint= \
-        --mount type=bind,source=/pscratch/sd/e/enochjo/taranis/,target=/data taranis:v3.0 \
-        /bin/bash -c "cd /taranis/cacti_processing/scripts && source enoch_set_env_from_b1.sh && ./process_cacti_csapr2_grid_case.py /data/joblist/cartesian_201901.json $case_name 0" &
+        --mount type=bind,source=/pscratch/sd/e/enochjo/taranis/,target=/data taranis:v3.0.4 \
+        /bin/bash -c "cd /taranis/cacti_processing/scripts && source enoch_set_env_from_b1.sh && ./process_cacti_csapr2_case.py /data/joblist/missing_files_polar.json $case_name 0" &
     local pid=$!
     JOB_PIDS["$case_name"]=$pid
     JOB_STARTS["$case_name"]=$(date +%s)

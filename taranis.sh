@@ -16,12 +16,12 @@ export PODMANHPC_MOUNT_PROGRAM=/global/common/shared/das/podman/bin/fuse-overlay
 
 
 PATH=/global/common/shared/tig/podman-hpc/bin/:$PATH
-podman-hpc rmsqi enochjo2009/taranis:v3.0
+podman-hpc rmsqi enochjo2009/taranis:v3.0.2
 
 source /global/homes/e/enochjo/.config/containers/login.sh
 podman-hpc login docker.io -u $PODMAN_USERNAME -p $PODMAN_PASSWORD
-podman-hpc pull enochjo2009/taranis:v3.0
-podman-hpc migrate enochjo2009/taranis:v3.0
+podman-hpc pull enochjo2009/taranis:v3.0.2
+podman-hpc migrate enochjo2009/taranis:v3.0.2
 
 # Set paths
 PYTHON_SCRIPT="./process_cacti_csapr2_case.py"
