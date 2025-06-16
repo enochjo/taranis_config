@@ -2,11 +2,11 @@
 #SBATCH -N 1
 #SBATCH -C cpu
 #SBATCH -q regular
-#SBATCH -J taranis_polar_all
+#SBATCH -J taranis_cart_all
 #SBATCH --mail-user=enoch.jo@pnnl.gov
 #SBATCH --mail-type=ALL
 #SBATCH -A m1657
-#SBATCH -t 24:00:00
+#SBATCH -t 48:00:00
 
 # OpenMP settings:
 export OMP_NUM_THREADS=1
@@ -26,17 +26,19 @@ podman-hpc migrate enochjo2009/taranis:v3.0.4
 # Set paths
 PYTHON_SCRIPT="./process_cacti_csapr2_case.py" # Not used for now.
 # Note that CASE_CONFIG_FILE is also mounted in podman-hpc
-CASE_CONFIG_FILE="/pscratch/sd/e/enochjo/taranis/joblist/missing_files_polar.json"
+CASE_CONFIG_FILE="/pscratch/sd/e/enochjo/taranis/joblist/missing_files_cartesian.json"
 
 # Extract case names from JSON
 CASE_NAMES=($(jq -r 'keys[]' "$CASE_CONFIG_FILE"))  # Modify based on JSON structure if needed
 NUM_CASES=${#CASE_NAMES[@]}
 
 # Maximum number of concurrent jobs
-MAX_JOBS=24
+# MAX_JOBS=12
+# For cartesian step
+MAX_JOBS=1
 
 # Maximum runtime before restarting (5 minutes = 300 seconds)
-MAX_RUNTIME=600
+MAX_RUNTIME=1200
 
 # Associative arrays to track job PIDs and start times
 declare -A JOB_PIDS
@@ -75,7 +77,7 @@ run_job() {
     fi
     srun -n 1 -c 10 --cpu_bind=cores podman-hpc run --rm --entrypoint= \
         --mount type=bind,source=/pscratch/sd/e/enochjo/taranis/,target=/data taranis:v3.0.4 \
-        /bin/bash -c "cd /taranis/cacti_processing/scripts && source enoch_set_env_from_b1.sh && ./process_cacti_csapr2_case.py /data/joblist/missing_files_polar.json $case_name 0" &
+        /bin/bash -c "cd /taranis/cacti_processing/scripts && source enoch_set_env_from_b1.sh && ./process_cacti_csapr2_grid_case.py /data/joblist/missing_files_cartesian.json $case_name 0" &
     local pid=$!
     JOB_PIDS["$case_name"]=$pid
     JOB_STARTS["$case_name"]=$(date +%s)
