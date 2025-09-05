@@ -24,12 +24,9 @@ podman-hpc pull enochjo2009/taranis:v3.0.4
 podman-hpc migrate enochjo2009/taranis:v3.0.4
 
 # Set paths
-PYTHON_SCRIPT="./process_cacti_csapr2_case.py" # Not used for now.
-# Note that CASE_CONFIG_FILE is also mounted in podman-hpc
-# CASE_CONFIG_FILE="/pscratch/sd/e/enochjo/taranis/joblist/polar_new_timeseries.json"
-CASE_CONFIG_FILE="/pscratch/sd/e/enochjo/taranis/joblist/cartesian_new_timeseries.json"
+# Note that CASE_CONFIG_FILE needs to be mounted in podman-hpc
 # CASE_CONFIG_FILE="/pscratch/sd/e/enochjo/taranis/joblist/missing_files_polar.json"
-# CASE_CONFIG_FILE="/pscratch/sd/e/enochjo/taranis/joblist/missing_files_cartesian.json"
+CASE_CONFIG_FILE="/pscratch/sd/e/enochjo/taranis/joblist/missing_files_cartesian.json"
 
 # Extract case names from JSON
 CASE_NAMES=($(jq -r 'keys[]' "$CASE_CONFIG_FILE"))  # Modify based on JSON structure if needed
