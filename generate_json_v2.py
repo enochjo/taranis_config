@@ -12,7 +12,7 @@ import pandas as pd
 output_times_file = '/global/homes/e/enochjo/github/taranis_config/new_timeseries.txt'
 
 # data_dir = "/pscratch/sd/e/enochjo/taranis/taranis_corcsapr2cfrppiqcM1.c1/"
-data_dir = "/pscratch/sd/e/enochjo/taranis/corcsapr2cfrppiqcM1.b1/"
+# data_dir = "/pscratch/sd/e/enochjo/taranis/corcsapr2cfrppiqcM1.b1/"
 
 # output_json_cartesian = "/global/homes/e/enochjo/github/taranis_config/cartesian_new_timeseries.json"
 # output_json_polar = "/global/homes/e/enochjo/github/taranis_config/polar_new_timeseries.json"

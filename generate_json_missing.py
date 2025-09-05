@@ -4,14 +4,14 @@ import pandas as pd
 from generate_json_v2 import generate_entry_cartesian, generate_entry_polar
 
 # Toggle to switch between Cartesian and Polar
-generate_mode = "cartesian"  # Set to "cartesian" or "polar"
+generate_mode = "polar"  # Set to "cartesian" or "polar"
 
 # File paths
 output_times_file = '/global/homes/e/enochjo/github/taranis_config/new_timeseries.txt'
 
-# data_dir = "/pscratch/sd/e/enochjo/taranis/taranis_corcsapr2cfrppiqcM1.c1/"
+data_dir = "/pscratch/sd/e/enochjo/taranis/taranis_corcsapr2cfrppiqcM1.c1/"
 # data_dir = "/global/cfs/projectdirs/m1657/avarble/cacti/Taranis/taranis_corcsapr2cfrppiqcM1.c1/"
-data_dir = "/pscratch/sd/e/enochjo/taranis/taranis_corcsapr2cfrppiqcM1_gridded.c1/"
+# data_dir = "/pscratch/sd/e/enochjo/taranis/taranis_corcsapr2cfrppiqcM1_gridded.c1/"
 
 # output_json_missing = f"/global/homes/e/enochjo/github/taranis_config/missing_files_{generate_mode}.json"
 output_json_missing = f'/pscratch/sd/e/enochjo/taranis/joblist/missing_files_{generate_mode}.json'
