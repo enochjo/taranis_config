@@ -46,8 +46,8 @@ missing_files = [file for file in expected_files if file not in existing_files]
 json_entries_missing = {}
 for file in missing_files:
     # Extract the date_time from the filename
-    date_time = file.split(".")[2] + "." + file.split(".")[3].split("_")[0]
-    # date_time = file.split(".")[2] + "." + file.split(".")[3]
+    date_time = file.split(".")[2] + "." + file.split(".")[3].split("_")[0] # Polar 
+    # date_time = file.split(".")[2] + "." + file.split(".")[3] # Cartesian
     # import pdb; pdb.set_trace()
     json_entries_missing[file] = generate_entry(date_time)
 
